@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registered Users</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4faff;
+            color: #003366;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #7494ec;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        h2 {
+            margin: 20px auto;
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #cce5ff;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #7494ec;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f1f9ff;
+        }
+        .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+
+       .logo {
+        height: 300px;              /* Large size */
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1000; 
+    }
+
+    </style>
+</head>
+<body>
+    <header>
+    <img src="{{ url_for('static', filename='images/wissen_logo.png') }}" alt="Wissen Logo" class="logo">
+    <div class="header-content">
+        <h1>Registered Users</h1>
+    </div>
+</header>
+
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+            <td>{{ user[2] }}</td>
+            <td>{{ user[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
+

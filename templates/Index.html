@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup Form</title>
+    <link rel="stylesheet" href="SignUp_LogIn_Form.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/SignUp_LogIn_Form.css') }}">
+
+</head>
+  <body>
+      <div class="container">
+        <div class="form-box login">
+              <form action="#">
+                  <h1>Welcome Member</h1>
+                  <h2>Please select your role</h2>
+                  <a href="{{ url_for('SignUp_LogIn_Form') }}" class="btn">Employee</a>
+                  <button type="submit" class="btn2">Admin</button>
+              </form>
+          </div>
+    <div class="toggle-box">
+              <div class="toggle-panel toggle-left">
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/Wissen_logo.png') }}" alt="Test Image" />
+                </div>
+
+              </div>
+</div>
+  </body>
+</html>

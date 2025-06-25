@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login History</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #e6f0ff;
+            color: #003366;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #7494ec;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        table {
+            width: 85%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #99ccff;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #7494ec;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f9ff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Login History</h1>
+    </header>
+
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Login Time</th>
+        </tr>
+        {% for login in logins %}
+        <tr>
+            <td>{{ login[0] }}</td>
+            <td>{{ login[1] }}</td>
+            <td>{{ login[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
