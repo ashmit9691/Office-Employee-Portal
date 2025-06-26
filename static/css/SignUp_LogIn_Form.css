@@ -320,5 +320,19 @@ _____________________________________
   z-index: 1000;
 }
 
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
 
 

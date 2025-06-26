@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel – Sidebar</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+  <style>
+  :root{
+    --sidebar-w:250px;
+    --dark:#7494ec;
+    --hover:#4f71d8;
+    --bg:#f5f6fa;
+    --card:#d8e7ff;          /* light-blue button colour */
+    --card-hover:#b7d2ff;    /* hover shade */
+    --card-text:#074d9b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",sans-serif}
+
+  body{display:flex;height:100vh}
+
+  /* == SIDEBAR == */
+  .sidebar{
+    width:var(--sidebar-w);background:var(--dark);color:#fff;
+    display:flex;flex-direction:column;align-items:center;padding-top:1rem;
+  }
+  .logo{height:150px;display:flex;align-items:center;justify-content:center;margin-bottom:2rem}
+  .logo img{max-height:250px;width:auto}
+
+  .nav-links{list-style:none;width:100%}
+  .nav-links a{
+    display:flex;align-items:center;gap:10px;padding:15px 20px;color:#fff;text-decoration:none;
+    transition:background .3s
+  }
+  .nav-links a:hover{background:var(--hover)}
+  .nav-links i{font-size:1.2rem}
+
+  /* == MAIN == */
+  .main-content{flex:1;padding:2rem;background:var(--bg);overflow-y:auto}
+  h2{margin-bottom:.8rem;font-size:2rem}
+  p{line-height:1.6;max-width:55ch}
+
+  /* ---- light-blue cards ---- */
+  .card-grid{display:flex;gap:2rem;flex-wrap:wrap;margin-top:1.5rem}
+  .card{
+    flex:1 1 250px;min-width:250px;max-width:350px;height:180px;
+    background:var(--card);
+    border-radius:22px;
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.15rem;font-weight:600;color:var(--card-text);
+    text-decoration:none;position:relative;overflow:hidden;
+    transition:transform .25s,box-shadow .25s,background .25s;
+  }
+  .card::before{               /* glossy overlay */
+    content:"";position:absolute;inset:0;border-radius:inherit;
+    background:linear-gradient(135deg,rgba(255,255,255,.45) 0%,rgba(255,255,255,.05) 60%);
+    mix-blend-mode:overlay;pointer-events:none;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    background:var(--card-hover);
+    box-shadow:0 10px 18px rgba(0,0,0,.18);
+  }
+  </style>
+</head>
+<body>
+
+  <!-- =====  SIDEBAR  ===== -->
+  <div class="sidebar">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='images/wissen_logo.png') }}" alt="Wissen">
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#" onclick="loadContent('home')"><i class='bx bx-home'></i>ADD USER</a></li>
+      <li><a href="#" onclick="loadContent('about')"><i class='bx bx-user'></i>DELETE USER</a></li>
+      <li><a href="#" onclick="loadContent('team')"><i class='bx bx-group'></i>MODIFY USER</a></li>
+      <li><a href="#" onclick="loadContent('database')"><i class='bx bx-data'></i>DATABASE</a></li>
+      <li><a href="#" onclick="loadContent('contact')"><i class='bx bx-phone'></i>CONTACT</a></li>
+    </ul>
+  </div>
+
+  <!-- =====  CONTENT  ===== -->
+  <div class="main-content" id="main-content">
+    <h2>Welcome!</h2>
+    <p>Select a menu item to see its content here.</p>
+  </div>
+
+  <script>
+    const content = {
+      home: "<h2>Add User</h2><p>Form or instructions here.</p>",
+      about: "<h2>Delete User</h2><p>Delete-user UI goes here.</p>",
+      team: "<h2>Modify User</h2><p>Modify-user UI goes here.</p>",
+      database: `
+        <h2>Database</h2>
+        <div class="card-grid">
+          <a class="card" href="{{ url_for('login_history') }}">LOGIN HISTORY</a>
+          <a class="card" href="{{ url_for('view_users') }}">USER DATA</a>
+          <a class="card" href="{{ url_for('admin_dashboard') }}">ADMIN DATA</a>
+        </div>`,
+      contact: "<h2>Contact</h2><p>Contact details or support form.</p>"
+    };
+    function loadContent(key){
+      document.getElementById("main-content").innerHTML = content[key] || "<p>Not found.</p>";
+    }
+  </script>
+</body>
+</html>
